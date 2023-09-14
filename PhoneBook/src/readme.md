@@ -10,6 +10,9 @@
 - сохранить изменения в txt
 - сохранить изменения в csv
 
+формат:
+Фамилия,Имя,Отчество,телефон
+
 Работа с csv:
 1. https://pyneng.readthedocs.io/ru/latest/book/17_serialization/csv.html
 2. https://pythonworld.ru/moduli/modul-csv.html
