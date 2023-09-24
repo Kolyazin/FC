@@ -16,8 +16,8 @@ while True:
     if cmd == '3':
         books.del_contact(pb)
     if cmd == '4':
-        pass
+        books.search_contact(pb)
     if cmd == '5':
         books.print_book(pb)
     if cmd == '6':
-        pass
+        books.to_csv(pb)
