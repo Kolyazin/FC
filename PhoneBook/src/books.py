@@ -18,9 +18,11 @@ def save_book(pb: []) -> None:
 
 def print_book(pb: []) -> None:
     table = PrettyTable()
-    table.field_names = ['Фамилия', 'Имя', 'Отчество', 'Телефон']
+    table.field_names = ['N', 'Фамилия', 'Имя', 'Отчество', 'Телефон']
+    idx = 1
     for line in pb:
-        table.add_row(line.split(',', 4))
+        table.add_row([f'{idx}'] + line.split(',', 4))
+        idx += 1
     print(table)
 
 
@@ -30,4 +32,45 @@ def add_contact(pb: []) -> None:
     name2 = input("Введите отчество: ")
     phone = input("Введите телефон: ")
     pb.append(f'{surname},{name},{name2},{phone}')
+    save_book(pb)
+
+
+def search_contact(pb: []) -> None:
+    pass
+
+
+def print_contact(contact: str) -> None:
+    data = contact.split(',', 4)
+    print(f'Фамилия: {data[0]}\n'
+          f'Имя: {data[1]}\n'
+          f'Отчество: {data[2]}\n'
+          f'Телефон: {data[4]}')
+
+
+def del_contact(pb: []) -> None:
+    idx = int(input('Введи номер строки для удаления: '))
+    if idx > len(pb):
+        return
+    pb.pop(idx-1)
+    save_book(pb)
+
+
+def change_contact(pb: []) -> None:
+    idx = int(input('Введи номер строки для изменения: '))
+    if idx > len(pb):
+        return
+    data = pb[idx-1].split(',', 4)
+    tmp_str = input(f'Введи новую фамилию или нажми Enter {data[0]}: ')
+    if tmp_str != '':
+        data[0] = tmp_str
+    tmp_str = input(f'Введи новое имя или нажми Enter {data[1]}: ')
+    if tmp_str != '':
+        data[1] = tmp_str
+    tmp_str = input(f'Введи новое отчество или нажми Enter {data[2]}: ')
+    if tmp_str != '':
+        data[2] = tmp_str
+    tmp_str = input(f'Введи новый номер или нажми Enter {data[3]}: ')
+    if tmp_str != '':
+        data[3] = tmp_str
+    pb[idx-1] = ','.join(data)
     save_book(pb)
