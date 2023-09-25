@@ -3,6 +3,7 @@ import csv
 from prettytable import PrettyTable
 
 
+# прочитать книгу из файла
 def load_book() -> []:
     pb = []
     with open(consts.txtBookFile, 'r', encoding='utf8') as pbf:
@@ -11,12 +12,14 @@ def load_book() -> []:
     return pb
 
 
+# сохранить книгу в файл
 def save_book(pb: []) -> None:
     with open(consts.txtBookFile, 'w', encoding='utf8') as bookFile:
         for record in pb:
             bookFile.write(f'{record}\n')
 
 
+# напечатать книгу на экран
 def print_book(pb: []) -> None:
     table = PrettyTable()
     table.field_names = ['N', 'Фамилия', 'Имя', 'Отчество', 'Телефон']
@@ -27,6 +30,7 @@ def print_book(pb: []) -> None:
     print(table)
 
 
+# добавить контакт в книгу
 def add_contact(pb: []) -> None:
     surname = input("Введите фамилию: ")
     name = input("Введите имя: ")
@@ -36,6 +40,7 @@ def add_contact(pb: []) -> None:
     save_book(pb)
 
 
+# искать в книге
 def search_contact(pb: []) -> None:
     cmd = input(f'Поиск по: 1 - фамилии, 2 - имени, 3 - отчеству, 4 - номеру телефона, 0 - выход\n')
     search_data = input(f'Введи что искать: ')
@@ -55,6 +60,7 @@ def search_contact(pb: []) -> None:
     print_book(searched)
 
 
+# напечатать данные контакта
 def print_contact(contact: str) -> None:
     data = contact.split(',', 4)
     print(f'Фамилия: {data[0]}\n'
@@ -63,6 +69,7 @@ def print_contact(contact: str) -> None:
           f'Телефон: {data[3]}')
 
 
+# удалить контакт
 def del_contact(pb: []) -> None:
     idx = int(input('Введи номер строки для удаления: '))
     if idx > len(pb):
@@ -71,6 +78,7 @@ def del_contact(pb: []) -> None:
     save_book(pb)
 
 
+# изменить контакт
 def change_contact(pb: []) -> None:
     idx = int(input('Введи номер строки для изменения: '))
     if idx > len(pb):
@@ -92,6 +100,7 @@ def change_contact(pb: []) -> None:
     save_book(pb)
 
 
+# сохранить в csv файл
 def to_csv(pb: []) -> None:
     with open(consts.csvBookFile, 'w', encoding='UTF8') as csv_file:
         writer = csv.writer(csv_file)
