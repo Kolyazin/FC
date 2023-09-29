@@ -5,6 +5,9 @@ class Contact:
         self.second_name = second_name
         self.phone = phone
 
+    def __radd__(self, other):
+        return other + [self.surname, self.name, self.second_name, self.phone]
+
     def __str__(self):
         return f'{self.surname} {self.name} {self.second_name}: {self.phone}'
 
@@ -31,3 +34,4 @@ class Contact:
 
     def set_phone(self, phone: str) -> None:
         self.phone = phone
+
