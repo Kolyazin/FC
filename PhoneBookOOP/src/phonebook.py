@@ -22,5 +22,18 @@ class PhoneBook:
     def change_contact(self, num: int, cont: contact) -> None:
         self.pb[num-1] = cont
 
-    def search_contact(self, cont: contact) -> int:
-        return self.pb.index(cont)
+    def search_contacts(self, cont: contact) -> []:
+        idx = 1
+        result = []
+        for item in self.pb:
+            if cont == item:
+                result.append(idx)
+            idx += 1
+        return result
+
+    def print_contacts(self, ids: []) -> None:
+        table = PrettyTable()
+        table.field_names = ['N', 'Фамилия', 'Имя', 'Отчество', 'Телефон']
+        for idx in ids:
+            table.add_row([f'{idx}'] + self.pb[idx-1])
+        print(table)
