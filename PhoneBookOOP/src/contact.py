@@ -19,6 +19,9 @@ class Contact:
     def __str__(self):
         return f'{self.surname} {self.name} {self.second_name}: {self.phone}'
 
+    def get(self):
+        return self.surname, self.name, self.second_name, self.phone
+
     def get_surname(self) -> str:
         return self.__surname
 
