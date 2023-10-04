@@ -1,10 +1,13 @@
 from contact import Contact
 import csv
 from prettytable import PrettyTable
+
+
 class PhoneBook:
     def __init__(self):
         self.pb = []
 
+    # красиво вывожу используя библиотеку PrettyTable
     def __str__(self):
         table = PrettyTable()
         table.field_names = ['N', 'Фамилия', 'Имя', 'Отчество', 'Телефон']
@@ -21,13 +24,14 @@ class PhoneBook:
         self.pb.pop(num - 1)
 
     def change_contact(self, num: int, cont: Contact) -> None:
-        self.pb[num-1] = cont
+        self.pb[num - 1] = cont
 
+    # поиск контактов возвращает список порядковых номеров контактов
     def search_contacts(self, cont: Contact) -> []:
         idx = 1
         result = []
         for item in self.pb:
-            if cont == item:
+            if cont == item: # сравнение с использованием переопределенного __eq__ в классе contact
                 result.append(idx)
             idx += 1
         return result
@@ -36,7 +40,7 @@ class PhoneBook:
         table = PrettyTable()
         table.field_names = ['N', 'Фамилия', 'Имя', 'Отчество', 'Телефон']
         for idx in ids:
-            table.add_row([f'{idx}'] + self.pb[idx-1])
+            table.add_row([f'{idx}'] + self.pb[idx - 1])
         print(table)
 
     def save_txt(self, file_name):
